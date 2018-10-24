@@ -1,4 +1,4 @@
-This program computes probability of k-mer sequence motif occurence in n ntd random target sequence. Python 3 needs to be installed.
+This program computes probability of k-mer sequence motif occurence in n ntd random target sequence. There's [a blog post](https://de-novo.org/2018/10/25/sequence-motif-occurrence/) describing the rationale behind it. Python 3 needs to be installed.
 
 ## Manual
 ```
@@ -18,7 +18,7 @@ This program computes probability of k-mer sequence motif occurence in n ntd ran
 
 `n=52, k=7: 0.002804712821387148`
 
-### multiple inputs
+### 2. multiple inputs
 ```
 ./main -n 500 500 500 -k 3 4 7 -p 1
 ```
