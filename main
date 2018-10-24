@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+import argparse
+from prob_seq import *
+from datetime import datetime
+
+parser = argparse.ArgumentParser(description="Calculate the probability of the event that one or more k-mer query sequence appear in random sequence of length n ntd.")
+parser.add_argument("-k", type=int, nargs="+", required=True, help="length of query sequence (k >= 3)")
+parser.add_argument("-n", type=int, nargs="+", required=True, help="length of random target sequence")
+parser.add_argument("-p", "--plot", nargs=1, choices=["0", "1"], help="Wheter or not to produce a plot. (0: no plot / 1: plot)", default="0")
+
+args = parser.parse_args()
+
+if __name__ == "__main__":
+    args_zip = zip(args.n, args.k)
+    try:
+        plot = int(args.p[0])
+    except AttributeError:
+        plot = int(args.plot[0])
+
+    for k in args.k:
+        if k < 2:
+            raise ValueError(f"k must be larger than 1. Got k={k}")
+
+    if plot:
+        plt.figure(figsize=(8,5))
+        for n, k in args_zip:
+            x = range(n+1)
+            y = [p_(n_, k) for n_ in x]
+
+            plt.plot(x, y, label=f'{k}mer')
+            print(f"n={n}, k={k}:", y[-1])
+
+        plt.xlabel('length of random sequence')
+        plt.ylabel('probability of occurrence')
+        plt.xlim(-1, None)
+        plt.ylim(0, 1.01)
+        plt.legend(loc=2)
+
+        ax = plt.gca()
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+        ax.get_yaxis().set_tick_params(which='both', direction='out')
+        ax.get_xaxis().set_tick_params(which='both', direction='out')
+        ax.yaxis.set_ticks_position('left')
+        ax.xaxis.set_ticks_position('bottom')
+        plt.savefig("{}.png".format(datetime.now().ctime()))
+    else:
+        for n, k in args_zip:
+            print(f"n={n}, k={k}:", p_(n, k))
