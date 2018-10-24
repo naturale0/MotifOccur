@@ -1,4 +1,4 @@
-This program computes probability of k-mer sequence motif occurence in n ntd random target sequence.
+This program computes probability of k-mer sequence motif occurence in n ntd random target sequence. Python 3 needs to be installed.
 
 ## Manual
 ```
@@ -23,4 +23,4 @@ This program computes probability of k-mer sequence motif occurence in n ntd ran
 ./main -n 500 500 500 -k 3 4 7 -p 1
 ```
 
-![img]()
+![img](https://raw.githubusercontent.com/naturale0/MotifOccur/master/Thu%20Oct%2025%2000%3A16%3A50%202018.png)
